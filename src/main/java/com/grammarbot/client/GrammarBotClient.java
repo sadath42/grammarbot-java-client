@@ -15,6 +15,10 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.grammarbot.client.exception.GrammarBotException;
 import com.grammarbot.client.model.GrammarBotResponse;
 
+/**
+ * Class to create the GrammarBotClient and check the text for grammer mistakes.
+ *
+ */
 public class GrammarBotClient {
 
 	private final JacksonJsonProvider jacksonJsonProvider;
@@ -24,6 +28,11 @@ public class GrammarBotClient {
 	private final String BASE_URI;
 	private final String version = "/v2";
 
+	/**
+	 * Constructor to initialize the grammarbot client.
+	 * 
+	 * @param botBuilder
+	 */
 	GrammarBotClient(GrammarBotBuilder botBuilder) {
 		super();
 		jacksonJsonProvider = new JacksonJaxbJsonProvider().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
@@ -34,10 +43,34 @@ public class GrammarBotClient {
 		this.api_Key = botBuilder.getApiKey();
 	}
 
+	/**
+	 * Method to check the text for grammar and returns the response.
+	 * 
+	 * @param text
+	 *            Text to be checked .
+	 * @return grammarBotResponse
+	 * @exception GrammarBotException
+	 */
 	public GrammarBotResponse check(String text) {
+		return check(text, language);
+	}
+
+	/**
+	 * Method to check the text for grammar for the specified language and
+	 * returns the response.
+	 * 
+	 * @param text
+	 *            Text to be checked .
+	 * @return grammarBotResponse
+	 * @exception GrammarBotException
+	 */
+	public GrammarBotResponse check(String text, String lang) {
+		if (lang == null || lang.isEmpty()) {
+			throw new GrammarBotException("Language Cannot be null or Empty");
+		}
 		String url = BASE_URI + version + "/check";
 		WebTarget target = client.target(url);
-		target = target.queryParam("api_key", api_Key).queryParam("text", text).queryParam("language", language);
+		target = target.queryParam("api_key", api_Key).queryParam("text", text).queryParam("language", lang);
 		Builder request = target.request(MediaType.APPLICATION_JSON);
 		GrammarBotResponse grammarBotResponse = null;
 		try {
@@ -46,14 +79,6 @@ public class GrammarBotClient {
 			throw new GrammarBotException(e.getResponse().readEntity(String.class), e);
 		}
 		return grammarBotResponse;
-	}
-
-	public GrammarBotResponse check(String text, String lang) {
-		String url = BASE_URI + version + "/check";
-		WebTarget target = client.target(url);
-		target = target.queryParam("api_key", api_Key).queryParam("text", text).queryParam("language", lang);
-		Builder request = target.request(MediaType.APPLICATION_JSON);
-		return request.get(GrammarBotResponse.class);
 	}
 
 }

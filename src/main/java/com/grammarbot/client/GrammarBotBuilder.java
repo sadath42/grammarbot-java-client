@@ -1,5 +1,9 @@
 package com.grammarbot.client;
 
+/**
+ * Builder class to create Grammarbot client.
+ *
+ */
 public class GrammarBotBuilder {
 
 	private String language = "en-US";
@@ -33,6 +37,11 @@ public class GrammarBotBuilder {
 		return this;
 	}
 
+	/**
+	 * Method to build the grammarbot client.
+	 * 
+	 * @return GrammarBotClient.
+	 */
 	public GrammarBotClient build() {
 		return new GrammarBotClient(this);
 	}
