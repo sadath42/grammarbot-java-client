@@ -35,7 +35,7 @@ public class Language {
 
 	@Override
 	public String toString() {
-		return "Language [name=" + name + ", code=" + code + ", DetectedLanguageObject=" + detectedLanguage + "]";
+		return "Language [name=" + name + ", code=" + code + ", DetectedLanguage=" + detectedLanguage + "]";
 	}
 
 }

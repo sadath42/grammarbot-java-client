@@ -5,11 +5,17 @@
 
 	<groupId>com.grammarbot.client</groupId>
 	<artifactId>grammarbot-client</artifactId>
-	<version>0.0.1-BETA-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>grammarbot-client</name>
 	<description>Client for Grammar bot Api</description>
 	<packaging>jar</packaging>
 	<url>https://github.com/sadath42/grammarbot-java-client</url>
+	<developers>
+		<developer>
+			<email>sadath42@gmail.com</email>
+			<url>https://github.com/sadath42/grammarbot-java-client</url>
+		</developer>
+	</developers>
 	<licenses>
 		<license>
 			<name>MIT License</name>

@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.ws.rs.client.ClientBuilder;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.grammarbot.client.GrammarBotBuilder;
 import com.grammarbot.client.GrammarBotClient;
 import com.grammarbot.client.model.Context;
+import com.grammarbot.client.model.DetectedLanguage;
 import com.grammarbot.client.model.GrammarBotResponse;
 import com.grammarbot.client.model.Language;
 import com.grammarbot.client.model.Matches;
@@ -25,43 +27,44 @@ public class GrammarClientTest {
 		// Here the client have default values for the
 		// Language = en-US, Api-Key = java-default , Base-url=
 		// http://api.grammarbot.io:80
-		GrammarBotClient botClient = new GrammarBotBuilder().setLanguage("en-us")
-				.setBaseURI("http://api.grammarbot.io:80").setApiKey("ur api key").build();
+		GrammarBotClient botClient = new GrammarBotBuilder().setLanguage("en-US")
+				.setBaseURI("http://api.grammarbot.io:80").setApiKey("9JMF2Y56").build();
 
-		GrammarBotResponse response = botClient.check("Did i do a any mistake");
+		GrammarBotResponse response = botClient.check("I can't remember how to go their");
 		System.out.println(response);
+		Assert.assertNotNull(response);
 
 		// Processing the out put
 		// The Software object gives the information regarding the software
 		Software software = response.getSoftware();
-		software.getApiVersion();
-		software.getPremium();
-		software.getPremium();
+		Assert.assertNotNull(software.getApiVersion());
+		Assert.assertNotNull(software.getPremium());
+		Assert.assertNotNull(software.getPremium());
 
 		// The Software object gives the information regarding the language
 		Language language = response.getLanguage();
-		language.getCode();
-		language.getDetectedLanguage();
+		DetectedLanguage detectedLanguage = language.getDetectedLanguage();
+		detectedLanguage.getCode();
+		detectedLanguage.getName();
 
 		List<Matches> matches = response.getMatches();
 		for (Matches matchedObj : matches) {
-			System.out.println(matchedObj);
 			Context context = matchedObj.getContext();
-			System.out.println(context.getLength());
-			System.out.println(context.getText());
-			System.out.println(matchedObj.getMessage());
+			Assert.assertNotNull(context.getLength());
+			Assert.assertNotNull(context.getText());
+			Assert.assertNotNull(matchedObj.getMessage());
 
 			// Replacement options .
 			ArrayList<Replacement> replacements = matchedObj.getReplacements();
 			for (Replacement replacement : replacements) {
-				System.out.println(replacement.getValue());
+				Assert.assertNotNull(replacement.getValue());
 			}
 
 			Rule rule = matchedObj.getRule();
 
-			System.out.println(rule.getDescription());
-			System.out.println(rule.getCategory());
-			System.out.println(rule.getIssueType());
+			Assert.assertNotNull(rule.getDescription());
+			Assert.assertNotNull(rule.getCategory());
+			Assert.assertNotNull(rule.getIssueType());
 
 		}
 
