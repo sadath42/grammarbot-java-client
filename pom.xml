@@ -5,7 +5,7 @@
 
 	<groupId>com.github.sadath42</groupId>
 	<artifactId>grammarbot-client</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>grammarbot-client</name>
 	<description>Client for Grammar bot Api</description>
 	<packaging>jar</packaging>
