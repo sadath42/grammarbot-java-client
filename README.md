@@ -26,7 +26,7 @@ maven dependency
 
 
 ## Creating the client
-## ===================
+
  Default Client, Here the client have default values for the
 Language = en-US, Api-Key = java-default , Base-url= http://api.grammarbot.io:80
 GrammarBotClient botClient = new GrammarBotBuilder().build();
@@ -39,11 +39,12 @@ GrammarBotClient botClient = new GrammarBotBuilder().setApiKey("ur api key").bui
 GrammarBotClient botClient = new     GrammarBotBuilder().setBaseURI("http://api.grammarbot.io:80").build();
 
 ### You can  specify all  the parameters while creating the client
+```java
 GrammarBotClient botClient = new GrammarBotBuilder().setLanguage("en-us")
 				.setBaseURI("http://api.grammarbot.io:80").setApiKey("ur api key").build();
-## Analyzing the text
-### ==================
+```
 
+## Analyzing the text
 ### There is only one method to perform the analysis, viz. GrammarBotClient.check method.
 
 text = 'I cant remember how to go their'
@@ -55,16 +56,15 @@ GrammarBotResponse [software=Software [name=GrammarBot, version=4.3.1, apiVersio
 GrammarBotClient botClient = client.check(text, "en-GB")
 
 ## Inspecting the GrammarBotResponse object
-### ===========================================
 ### check detected language
+```java
 Language language = response.getLanguage();
 DetectedLanguage detectedLanguage = language.getDetectedLanguage();
 detectedLanguage.getCode(); # en-US
 detectedLanguage.getName();  # English (US)
-
+```
 ## Inspecting the GrammarBotMatch objects
-### =====================================
-
+```java
 List<Matches> matches = response.getMatches();
 for (Matches matchedObj : matches) {
 #inspect the context object
@@ -83,7 +83,7 @@ rule.getDescription()
 rule.getCategory()
 rule.getIssueType()
 }
-
+```
 For more information you will have access to the complete response in GrammarBotResponse
 
 Please refer the test case for complete example of usage of client. 
