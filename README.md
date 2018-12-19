@@ -1,31 +1,25 @@
 grammarbot-java libraray
 Grammar Bot provides spelling and grammar check. Signup for an API key at https://www.grammarbot.io/ for increased usage limits. The API still works with no key, but the daily usage limit is lower.
 
-## Installation
+## Building project locally .
 Clone the project 
 https://github.com/sadath42/grammarbot-java-client
-From project root directory run the belows commands
+From project root directory run the below command
 1. mvn clean install
-2. mvn install:install-file -Dfile=target\grammarbot-client-0.0.1.jar  -DgroupId=com.grammarbot.client  -DartifactId=grammarbot-client -Dversion=0.0.1 -Dpackaging=jar -DpomFile=pom.xml
 
 ### Importing the client library in maven project.
+The jar has been released in the maven central
 maven dependency
 ```xml
  <dependency>
-      <groupId>com.grammarbot.client</groupId>
-      <artifactId>grammarbot-client</artifactId>
-      <version>0.0.1</version>
-  </dependency>
+  <groupId>com.github.sadath42</groupId>
+  <artifactId>grammarbot-client</artifactId>
+  <version>0.0.1</version>
+</dependency>
 ```
-### Importing the client library in Gradle project.
-```groovy
-  compile group: 'com.grammarbot.client', name: 'grammarbot-client', version: '0.0.1'
-  Add mavenLocal() to the repositeries as first line in repositories as shown below in build.gradle
-  repositories {
-	mavenLocal()
-	...
-	}
- ``` 
+For other build tools you find the dependency in below url.
+https://search.maven.org/artifact/com.github.sadath42/grammarbot-client/0.0.1/jar
+
 ## Creating the client
 ```java
 Default Client, Here the client have default values for the
